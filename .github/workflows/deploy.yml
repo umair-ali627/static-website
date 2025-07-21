@@ -21,4 +21,4 @@ jobs:
           source: "." 
           target: "/var/www/static-website"
           strip_components: 0
-          rm: true
+          rm: false
