@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><title>WebSocket Test</title></head>
+<body>
+<h2>WebSocket Test</h2>
+<input id="msg" placeholder="Type message" />
+<button onclick="send()">Send</button>
+<pre id="log"></pre>
+
+<script>
+    const log = document.getElementById('log');
+    const ws = new WebSocket("wss://test.rtcleague.com/ws/");
+
+    ws.onopen = () => log.innerText += "Connected\n";
+    ws.onmessage = (event) => log.innerText += "Received: " + event.data + "\n";
+    ws.onclose = () => log.innerText += "Disconnected\n";
+    ws.onerror = (e) => log.innerText += "Error\n";
+
+    function send() {
+        const msg = document.getElementById('msg').value;
+        ws.send(msg);
+        log.innerText += "Sent: " + msg + "\n";
+    }
+</script>
+</body>
+</html>
+
